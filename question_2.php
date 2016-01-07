@@ -34,6 +34,21 @@ class Bronze_Customer extends Customer {
 	public function deposit($amount){
 		$this->balance = $this->get_balance() + $amount;
 	}
+
+
+	/**
+	 * Instantiate the correct object for customer ID
+	 * @return bool
+	 */
+	public function get_instance(){
+		$id= $this->id;
+		if (strlen($id) <=10 && substr($id,0,1) == 'B') {
+			return true;
+		}
+		else {
+			throw new \InvalidArgumentException('Invalid customer ID');
+		}
+	}
 }
 
 /**
@@ -49,6 +64,20 @@ class Silver_Customer extends Customer {
 	public function deposit($amount){
 		$this->balance = $this->get_balance() + $amount * (1.05);
 	}
+
+    /**
+     * Instantiate the correct object for customer ID
+     * @return bool
+     */
+    public function get_instance(){
+        $id= $this->id;
+        if (strlen($id) <=10 && substr($id,0,1) == 'S') {
+            return true;
+        }
+        else {
+            throw new \InvalidArgumentException('Invalid customer ID');
+        }
+    }
 }
 
 /**
@@ -64,4 +93,18 @@ class Gold_Customer extends Customer {
 	public function deposit($amount){
 		$this->balance = $this->get_balance() + $amount * (1.1);
 	}
+
+    /**
+     * Instantiate the correct object for customer ID
+     * @return bool
+     */
+    public function get_instance(){
+        $id= $this->id;
+        if (strlen($id) <=10 && substr($id,0,1) == 'G') {
+            return true;
+        }
+        else {
+            throw new \InvalidArgumentException('Invalid customer ID');
+        }
+    }
 }
